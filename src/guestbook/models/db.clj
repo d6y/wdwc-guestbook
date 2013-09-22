@@ -6,6 +6,11 @@
          :subprotocol "sqlite"
          :subname "db.sq3"})
 
+(defn delete-guestbook-table []
+  (sql/with-connection
+   db
+   (sql/drop-table :guestbook)))
+
 (defn create-guestbook-table []
   (sql/with-connection
      db
@@ -13,7 +18,8 @@
       :guestbook
       [:id "INTEGER PRIMARY KEY AUTOINCREMENT"]
       [:timestamp "TIMESTAMP DEFAULT CURRENT_TIMESTAMP"]
-      [:name "TEXT"])
+      [:name "TEXT"]
+      [:message "TEXT"])
      (sql/do-commands "CREATE INDEX timestamp_index ON guestbook (timestamp)"))
   )
 
@@ -22,5 +28,15 @@
    db
    (sql/with-query-results
     res
-    ["SELECT * FROM guestbook ORDER BY timesteamp DESC"]
+    ["SELECT * FROM guestbook ORDER BY timestamp DESC"]
     (doall res))))
+
+(defn save-message [name message]
+  (sql/with-connection
+   db
+   (sql/insert-values
+    :guestbook
+    [:name :message :timestamp]
+    [name message (new java.util.Date)]))
+  )
+
