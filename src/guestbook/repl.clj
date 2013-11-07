@@ -33,6 +33,10 @@
   (.stop @server)
   (reset! server nil))
 
+  (start-server)
+
+  (stop-server)
+
 (comment
   (start-server)
   (stop-server)

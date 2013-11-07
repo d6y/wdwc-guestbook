@@ -7,7 +7,9 @@
                  [ring-server "0.3.0"]
                  ; JDBC Dependencies
                  [org.clojure/java.jdbc "0.2.3"]
-                 [org.xerial/sqlite-jdbc "3.7.2"] ]
+                 [org.xerial/sqlite-jdbc "3.7.2"] 
+                 [lib-noir "0.6.9"]
+                 ]
   :plugins [[lein-ring "0.8.5"]]
   :ring {:handler guestbook.handler/war-handler
          :init guestbook.handler/init
