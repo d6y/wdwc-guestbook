@@ -35,7 +35,8 @@
    ; here we create a form with text fields called "name" and "messae"
    ; these will be sent when the form posts to the server as keywords of
    ; the same name
-   (form-to [:post "/"]
+   (form-to
+     [:post "/"]
      [:p "Name:"]
      (text-field "name" name)
 

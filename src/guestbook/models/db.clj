@@ -37,6 +37,7 @@
    (sql/insert-values
     :guestbook
     [:name :message :timestamp]
-    [name message (new java.util.Date)]))
+    [name message (new java.util.Date)])
+   (println (str "Saving " message)))
   )
 
